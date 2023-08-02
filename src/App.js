@@ -64,6 +64,7 @@ function App() {
         </div>
         <form className="chatbox-input" onSubmit={handleSubmit}>
           <input
+          className="text-box"
             type="text"
             value={userInput}
             onChange={handleInputChange}

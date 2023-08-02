@@ -26,7 +26,9 @@ body {
   background-color: #fff;
   width: 100%;
   max-width: 600px;
+  position: relative;
 }
+
 /* Additional design for chatbox-container */
 .chatbox-container {
   position: relative; /* For absolute positioning of greeting */
@@ -37,7 +39,7 @@ body {
   margin-bottom: 10px;
 }
 
-.chatbox-messages {
+.chatbox-message {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -56,6 +58,9 @@ body {
   align-self: flex-end;
   background-color: #007bff;
   color: #fff;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .typing {
@@ -162,11 +167,13 @@ body {
 .send-button:hover {
   background-color: #0056b3;
   transform: scale(1.05); /* Added hover animation */
+  transform: scale(1.05);
 }
 
 .send-button:active {
   background-color: #003980;
   transform: scale(0.95); /* Added click animation */
+  transform: scale(0.95);
 }
 
 /* Greeting animation */
@@ -201,4 +208,11 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.text-box {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
 }
