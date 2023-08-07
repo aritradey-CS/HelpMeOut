@@ -20,6 +20,12 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
 }
 
 .chatbox-header {
@@ -68,8 +74,9 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .chat-title {
@@ -88,7 +95,7 @@ body {
   overflow-y: auto;
   padding: 10px;
   background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
@@ -124,6 +131,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px 0 0 5px;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .send-button {
@@ -134,12 +142,40 @@ body {
   color: #fff;
   cursor: pointer;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 .send-button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .send-button:active {
   background-color: #003980;
+  transform: scale(0.95);
 }
+
+/* Greeting animation */
+.greeting-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.greeting-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  animation: fadeInUp 1s ease;
+}
+
