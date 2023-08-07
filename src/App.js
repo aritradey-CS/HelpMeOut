@@ -69,7 +69,7 @@ function App() {
             onChange={handleInputChange}
             placeholder="Type your message..."
           />
-          <button type="submit">Send</button>
+          <button type="submit" className="send-button">Send</button>
         </form>
       </div>
     </div>

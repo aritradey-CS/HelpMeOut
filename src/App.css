@@ -27,7 +27,10 @@ body {
   width: 100%;
   max-width: 600px;
 }
-
+/* Additional design for chatbox-container */
+.chatbox-container {
+  position: relative; /* For absolute positioning of greeting */
+}
 .chatbox-header {
   font-size: 24px;
   font-weight: bold;
@@ -56,6 +59,11 @@ body {
 }
 
 .typing {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 12px;
+  color: #666;
   animation: blinkCursor 0.7s infinite;
 }
 
@@ -85,6 +93,7 @@ body {
   margin-bottom: 10px;
 }
 
+/* Additional design for chat-box */
 .chat-box {
   display: flex;
   flex-direction: column;
@@ -96,8 +105,10 @@ body {
   padding: 10px;
   background-color: #f9f9f9;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border-radius: 10px;
+  position: relative; /* For typing animation */
 }
+
 
 .user-message {
   align-self: flex-end;
@@ -125,13 +136,14 @@ body {
   margin-top: 20px;
 }
 
-.chat-input {
+.chatbox-input {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px 0 0 5px;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px; /* Added font size */
 }
 
 .send-button {
@@ -143,17 +155,18 @@ body {
   cursor: pointer;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+  font-size: 16px; /* Added font size */
 }
 
 .send-button:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
+  transform: scale(1.05); /* Added hover animation */
 }
 
 .send-button:active {
   background-color: #003980;
-  transform: scale(0.95);
+  transform: scale(0.95); /* Added click animation */
 }
 
 /* Greeting animation */
