@@ -35,6 +35,28 @@ body {
   display: grid;
   place-items: center;
 }
+/* Media Query for smaller screens */
+@media (max-width: 1133px) {
+  .chatbox-container {
+    margin-left: 25vh;
+  }
+}
+@media (max-width: 980px) {
+  .chatbox-container {
+    margin-left: 15vh;
+  }
+}
+@media (max-width: 890px) {
+  .chatbox-container {
+    margin-left: 5vh;
+  }
+}
+@media (max-width: 390px) {
+  .chatbox-container {
+    margin-left: 0vh;
+  }
+}
+
 /* Additional design for chatbox-container */
 .chatbox-container {
   position: relative; /* For absolute positioning of greeting */
@@ -50,9 +72,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 200px;
+  max-height: 60vh;
   overflow-y: auto;
   width: 100%; /* Ensure responsiveness */
+}
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .chatbox-messages {
+    max-height: 40vh;
+  }
 }
 .chatbox-messages::-webkit-scrollbar{
   width: 0.5em;
@@ -75,7 +103,6 @@ body {
   background-color: #f1f1f1;
   color: #333;
 }
-
 .user-message {
   align-self: flex-end;
   background-color: #007bff;
