@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import axios from "axios";
 import MovieRecommendation from "./components/MovieRecommendation";
+import ApiTestPage from "./ApiTestPage";
+
+
+
 const API_KEY = "e151eede51858a0862be634a32f83d9c";
 
 function App() {
@@ -140,6 +144,7 @@ function App() {
             Send
           </button>
         </form>
+        <ApiTestPage />
       </div>
     </div>
   );
