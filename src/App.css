@@ -29,7 +29,7 @@ body {
   max-width: 600px;
   position: relative;
   height: 80vh;
-    margin-left: 50vh;
+  margin-left: 50vh;
 
   /* Center the chatbox using CSS Grid */
   display: grid;
@@ -82,10 +82,10 @@ body {
     max-height: 40vh;
   }
 }
-.chatbox-messages::-webkit-scrollbar{
+.chatbox-messages::-webkit-scrollbar {
   width: 0.5em;
 }
-.chatbox-messages::-webkit-scrollbar-thumb{
+.chatbox-messages::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 5px;
 }
@@ -94,7 +94,7 @@ body {
   background-color: #555;
 }
 
-.chatbox-messages{
+.chatbox-messages {
   padding-right: 10px;
 }
 .chat-message {
