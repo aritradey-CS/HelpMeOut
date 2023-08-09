@@ -7,6 +7,7 @@ import ApiTestPage from "./ApiTestPage";
 
 
 const API_KEY = "e151eede51858a0862be634a32f83d9c";
+const MOVIE_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`;
 
 function App() {
   const [userInput, setUserInput] = useState("");
@@ -37,12 +38,11 @@ function App() {
 
   const generateResponse = async (userInput) => {
     try {
-      // Implement your decision tree logic here
-      // For example, you can check if user input contains keywords related to movies, books, etc.
       if (userInput.toLowerCase().includes("movie")) {
-        return await getMovieRecommendation();
+        getMovieRecommendation();
+        return "Sure! Here are some movie recommendations:";
       } else if (userInput.toLowerCase().includes("book")) {
-        return await getBookRecommendation();
+        // ...
       } else {
         return "I'm sorry, I can't help you with that at the moment.";
       }
@@ -51,6 +51,7 @@ function App() {
       return "Oops! Something went wrong.";
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,21 +76,31 @@ function App() {
 
   const getMovieRecommendation = async () => {
     try {
-      // Simulate API request using axios (replace with actual API call)
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/550?api_key=${API_KEY}`
-      );
-      // Parse the API response and extract movie details
-      const movieTitle = response.data.title;
-      const movieRating = response.data.vote_average;
-      const moviePrice = "$15.99"; // You can fetch real price from another API
-      const movieReview = "Great movie!";
-      return `I recommend the movie '${movieTitle}' with a rating of ${movieRating}/10. It costs ${moviePrice}. Review: ${movieReview}`;
+      const response = await axios.get(MOVIE_API_URL); // Use the correct API URL here
+      const movies = response.data.results;
+  
+      const recommendations = movies.slice(0, 10).map((movie) => {
+        const movieTitle = movie.title;
+        const movieRating = movie.vote_average;
+        const moviePoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+        const movieLink = `https://www.themoviedb.org/movie/${movie.id}`;
+  
+        return {
+          title: movieTitle,
+          rating: movieRating,
+          poster: moviePoster,
+          link: movieLink,
+        };
+      });
+  
+      addChatMessage("Chatbot", <MovieRecommendation recommendations={recommendations} />);
     } catch (error) {
       console.error("Error fetching movie data:", error);
-      return "Oops! Something went wrong while fetching movie data.";
+      addChatMessage("Chatbot", "Oops! Something went wrong while fetching movie data.");
     }
   };
+  
+  
 
   const getBookRecommendation = async () => {
     try {

@@ -15,14 +15,23 @@ const ApiTestPage = () => {
       const recommendations = movies.slice(0, 10).map((movie) => {
         const movieTitle = movie.title;
         const movieRating = movie.vote_average;
-        const recommendation = `I recommend the movie '${movieTitle}' with a rating of ${movieRating}/10.`;
-        return recommendation;
+        const moviePoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+        const movieLink = `https://www.themoviedb.org/movie/${movie.id}`;
+
+        return {
+          title: movieTitle,
+          rating: movieRating,
+          poster: moviePoster,
+          link: movieLink,
+        };
       });
 
       setMovieRecommendations(recommendations);
     } catch (error) {
       console.error("Error fetching movie data:", error);
-      setMovieRecommendations(["Oops! Something went wrong while fetching movie data."]);
+      setMovieRecommendations([
+        { title: "Oops! Something went wrong while fetching movie data." },
+      ]);
     }
   };
 
@@ -36,8 +45,13 @@ const ApiTestPage = () => {
         <div>
           <h3>Movie Recommendations:</h3>
           <ul>
-            {movieRecommendations.map((recommendation, index) => (
-              <li key={index}>{recommendation}</li>
+            {movieRecommendations.map((movie, index) => (
+              <li key={index}>
+                <a href={movie.link} target="_blank" rel="noopener noreferrer">
+                  <img src={movie.poster} alt={movie.title} width="100" />
+                  {movie.title} (Rating: {movie.rating})
+                </a>
+              </li>
             ))}
           </ul>
         </div>
