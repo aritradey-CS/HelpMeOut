@@ -28,6 +28,8 @@ body {
   width: 100%;
   max-width: 600px;
   position: relative;
+  height: 80vh;
+    margin-left: 50vh;
 
   /* Center the chatbox using CSS Grid */
   display: grid;
