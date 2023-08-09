@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     addChatMessage("Chatbot", "Hello! How can I assist you today?");
-    scrollToBottom();
+    scrollToBottom(); //this line to scroll to the bottom on initial load
   }, []);
 
   useEffect(() => {
