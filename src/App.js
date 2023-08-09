@@ -12,10 +12,19 @@ function App() {
 
   useEffect(() => {
     addChatMessage("Chatbot", "Hello! How can I assist you today?");
+    scrollToBottom();
   }, []);
 
+  useEffect(() => {
+    // Call the scrollToBottom function whenever chatMessages state updates
+    scrollToBottom();
+  }, [chatMessages]); // Add chatMessages as a dependency
+
   const addChatMessage = (sender, message) => {
-    setChatMessages((prevMessages) => [...prevMessages, { sender, text: message }]);
+    setChatMessages((prevMessages) => [
+      ...prevMessages,
+      { sender, text: message },
+    ]);
   };
 
   const handleInputChange = (e) => {
@@ -99,7 +108,7 @@ function App() {
       chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
     }
   };
-  
+
   return (
     <div className="chatbox-container">
       <div className="chatbox-header">HelpMeOut</div>
