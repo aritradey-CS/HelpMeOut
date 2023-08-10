@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import axios from "axios";
 import MovieRecommendation from "./components/MovieRecommendation";
-import ApiTestPage from "./ApiTestPage";
-
-
+// import ApiTestPage from "./ApiTestPage";
 
 const API_KEY = "e151eede51858a0862be634a32f83d9c";
 const MOVIE_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`;
@@ -51,7 +49,6 @@ function App() {
       return "Oops! Something went wrong.";
     }
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,13 +75,13 @@ function App() {
     try {
       const response = await axios.get(MOVIE_API_URL); // Use the correct API URL here
       const movies = response.data.results;
-  
+
       const recommendations = movies.slice(0, 10).map((movie) => {
         const movieTitle = movie.title;
         const movieRating = movie.vote_average;
         const moviePoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
         const movieLink = `https://www.themoviedb.org/movie/${movie.id}`;
-  
+
         return {
           title: movieTitle,
           rating: movieRating,
@@ -92,15 +89,19 @@ function App() {
           link: movieLink,
         };
       });
-  
-      addChatMessage("Chatbot", <MovieRecommendation recommendations={recommendations} />);
+
+      addChatMessage(
+        "Chatbot",
+        <MovieRecommendation recommendations={recommendations} />
+      );
     } catch (error) {
       console.error("Error fetching movie data:", error);
-      addChatMessage("Chatbot", "Oops! Something went wrong while fetching movie data.");
+      addChatMessage(
+        "Chatbot",
+        "Oops! Something went wrong while fetching movie data."
+      );
     }
   };
-  
-  
 
   const getBookRecommendation = async () => {
     try {
@@ -155,7 +156,7 @@ function App() {
             Send
           </button>
         </form>
-        <ApiTestPage />
+        {/* <ApiTestPage /> */}
       </div>
     </div>
   );
