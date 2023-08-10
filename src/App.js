@@ -2,10 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import axios from "axios";
 import MovieRecommendation from "./components/MovieRecommendation";
+import BookRecommendation from "./components/BookRecommendation";
+import MusicRecommendation from "./components/MusicRecommendation";
+import ClothesRecommendation from "./components/ClothesRecommendation";
 // import ApiTestPage from "./ApiTestPage";
 
 const API_KEY = "e151eede51858a0862be634a32f83d9c";
 const MOVIE_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`;
+
+const BOOK_API_KEY = "";
+const BOOK_API_URL = '';
+
+const MUSIC_API_KEY = "";
+const MUSIC_API_URL = '';
+
+const CLOTHES_API_KEY = "";
+const CLOTHES_API_URL = '';
+
 
 function App() {
   const [userInput, setUserInput] = useState("");
@@ -29,6 +42,60 @@ function App() {
       { sender, text: message },
     ]);
   };
+
+// State variables for different recommendation categories
+const [bookRecommendations, setBookRecommendations] = useState([]);
+const [musicRecommendations, setMusicRecommendations] = useState([]);
+const [clothesRecommendations, setClothesRecommendations] = useState([]);
+
+// State variables for search queries
+const [bookSearchQuery, setBookSearchQuery] = useState("");
+const [musicSearchQuery, setMusicSearchQuery] = useState("");
+const [clothesSearchQuery, setClothesSearchQuery] = useState("");
+
+// Fetch recommendation data for books
+const fetchBookRecommendations = async () => {
+  // Fetch data using axios or any other library
+  const response = await axios.get(BOOK_API_URL);
+  // Process response data and set state
+  setBookRecommendations(response.data);
+};
+
+// Fetch recommendation data for music
+const fetchMusicRecommendations = async () => {
+  // Fetch data using axios or any other library
+  const response = await axios.get(MUSIC_API_URL);
+  // Process response data and set state
+  setMusicRecommendations(response.data);
+};
+
+// Fetch recommendation data for clothes
+const fetchClothesRecommendations = async () => {
+  // Fetch data using axios or any other library
+  const response = await axios.get(CLOTHES_API_URL);
+  // Process response data and set state
+  setClothesRecommendations(response.data);
+};
+
+// Function to handle search for books
+const handleBookSearch = () => {
+  // Implement search functionality for books
+};
+
+// Function to handle search for music
+const handleMusicSearch = () => {
+  // Implement search functionality for music
+};
+
+// Function to handle search for clothes
+const handleClothesSearch = () => {
+  // Implement search functionality for clothes
+};
+
+
+
+
+
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -130,6 +197,16 @@ function App() {
       <div className="chatbox-header">HelpMeOut</div>
       <div className="chatbox">
         <div className="chatbox-messages" ref={chatMessagesRef}>
+
+{/* Render book recommendations */}
+<BookRecommendation recommendations={bookRecommendations} />
+      {/* Render music recommendations */}
+      <MusicRecommendation recommendations={musicRecommendations} />
+      {/* Render clothes recommendations */}
+      <ClothesRecommendation recommendations={clothesRecommendations} />
+
+
+
           {chatMessages.map((message, index) => (
             <div
               key={index}
