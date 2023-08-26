@@ -120,7 +120,9 @@ function App() {
       <div className="chatbox">
         <div className="chatbox-messages" ref={chatMessagesRef}>
           <div className="suggestions">
-            <button onClick={getMovieRecommendation}>Movie Recommendations</button>
+            <button onClick={getMovieRecommendation}>
+              Movie Recommendations
+            </button>
             {/* <button onClick={() => handleBookSearch()}>Book Recommendations</button> */}
             {/* <button onClick={() => handleMusicSearch()}>Music Recommendations</button> */}
             {/* <button onClick={() => handleClothesSearch()}>Clothes Recommendations</button> */}
