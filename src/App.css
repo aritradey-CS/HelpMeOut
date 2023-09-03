@@ -1,41 +1,31 @@
 /* App.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #58add4;
-}
+/* ... your existing styles ... */
 
-.app-container {
+/* Updated styles for the chatbox */
+.chat-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   padding: 20px;
+  background-color: #58add4;
 }
 
 .chatbox-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  padding: 20px;
   background-color: #ffffff;
   width: 100%;
   max-width: 600px;
+  margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
   position: relative;
   height: 80vh;
-  margin-left: 50vh;
-
-  /* Center the chatbox using CSS Grid */
-  display: grid;
-  place-items: center;
+  overflow: hidden;
 }
-/* Media Query for smaller screens */
+
+/* Center the chatbox using CSS Grid */
 @media (max-width: 1133px) {
   .chatbox-container {
     margin-left: 25vh;
@@ -53,19 +43,19 @@ body {
 }
 @media (max-width: 390px) {
   .chatbox-container {
-    margin-left: 0vh;
+    margin-left: 0;
   }
 }
 
 /* Additional design for chatbox-container */
 .chatbox-container {
-  position: relative; /* For absolute positioning of greeting */
+  position: relative;
 }
+
 .chatbox-header {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  overflow: hidden;
 }
 
 .chatbox-messages {
@@ -74,17 +64,13 @@ body {
   gap: 10px;
   max-height: 60vh;
   overflow-y: auto;
-  width: 100%; /* Ensure responsiveness */
+  width: 100%;
 }
-/* Media Query for smaller screens */
-@media (max-width: 768px) {
-  .chatbox-messages {
-    max-height: 40vh;
-  }
-}
+
 .chatbox-messages::-webkit-scrollbar {
   width: 0.5em;
 }
+
 .chatbox-messages::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 5px;
@@ -94,22 +80,35 @@ body {
   background-color: #555;
 }
 
-.chatbox-messages {
-  padding-right: 10px;
-}
 .chat-message {
   padding: 10px;
   border-radius: 10px;
   background-color: #f1f1f1;
   color: #333;
 }
+
 .user-message {
   align-self: flex-end;
   background-color: #007bff;
   color: #fff;
-  padding: 5px 10px;
-  margin: 5px;
+  padding: 10px 15px;
+  margin: 5px 0;
   border-radius: 10px;
+  width: auto;
+  max-width: 70%;
+  animation: fadeInRight 0.5s ease;
+}
+
+.chatbot-message {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 10px;
+  width: auto;
+  max-width: 70%;
+  animation: fadeInLeft 0.5s ease;
 }
 
 .typing {
@@ -126,6 +125,8 @@ body {
     border-right: 2px solid transparent;
   }
 }
+
+/* ... your existing styles ... */
 
 .chat {
   display: flex;
