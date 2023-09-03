@@ -5,20 +5,14 @@ import MovieRecommendation from "./components/MovieRecommendation";
 import BookRecommendation from "./components/BookRecommendation";
 import MusicRecommendation from "./components/MusicRecommendation";
 import ClothesRecommendation from "./components/ClothesRecommendation";
-// import ApiTestPage from "./ApiTestPage";
 
 const API_KEY = "e151eede51858a0862be634a32f83d9c";
 const MOVIE_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`;
 
-const BOOK_API_KEY = "";
-const BOOK_API_URL = '';
-
-const MUSIC_API_KEY = "";
-const MUSIC_API_URL = '';
-
-const CLOTHES_API_KEY = "";
-const CLOTHES_API_URL = '';
-
+// Define your book, music, and clothes API URLs here
+const BOOK_API_URL = "";
+const MUSIC_API_URL = "";
+const CLOTHES_API_URL = "";
 
 function App() {
   const [userInput, setUserInput] = useState("");
@@ -28,13 +22,12 @@ function App() {
 
   useEffect(() => {
     addChatMessage("Chatbot", "Hello! How can I assist you today?");
-    scrollToBottom(); //this line to scroll to the bottom on initial load
+    scrollToBottom(); // Scroll to the bottom on initial load
   }, []);
 
   useEffect(() => {
-    // Call the scrollToBottom function whenever chatMessages state updates
     scrollToBottom();
-  }, [chatMessages]); // Add chatMessages as a dependency
+  }, [chatMessages]);
 
   const addChatMessage = (sender, message) => {
     setChatMessages((prevMessages) => [
@@ -43,62 +36,11 @@ function App() {
     ]);
   };
 
-// State variables for different recommendation categories
-const [bookRecommendations, setBookRecommendations] = useState([]);
-const [musicRecommendations, setMusicRecommendations] = useState([]);
-const [clothesRecommendations, setClothesRecommendations] = useState([]);
-
-// State variables for search queries
-const [bookSearchQuery, setBookSearchQuery] = useState("");
-const [musicSearchQuery, setMusicSearchQuery] = useState("");
-const [clothesSearchQuery, setClothesSearchQuery] = useState("");
-
-// Fetch recommendation data for books
-const fetchBookRecommendations = async () => {
-  // Fetch data using axios or any other library
-  const response = await axios.get(BOOK_API_URL);
-  // Process response data and set state
-  setBookRecommendations(response.data);
-};
-
-// Fetch recommendation data for music
-const fetchMusicRecommendations = async () => {
-  // Fetch data using axios or any other library
-  const response = await axios.get(MUSIC_API_URL);
-  // Process response data and set state
-  setMusicRecommendations(response.data);
-};
-
-// Fetch recommendation data for clothes
-const fetchClothesRecommendations = async () => {
-  // Fetch data using axios or any other library
-  const response = await axios.get(CLOTHES_API_URL);
-  // Process response data and set state
-  setClothesRecommendations(response.data);
-};
-
-// Function to handle search for books
-const handleBookSearch = () => {
-  // Implement search functionality for books
-};
-
-// Function to handle search for music
-const handleMusicSearch = () => {
-  // Implement search functionality for music
-};
-
-// Function to handle search for clothes
-const handleClothesSearch = () => {
-  // Implement search functionality for clothes
-};
-
-
-
-
-
-
-  const handleInputChange = (e) => {
-    setUserInput(e.target.value);
+  const scrollToBottom = () => {
+    if (chatMessagesRef.current) {
+      const chatMessagesContainer = chatMessagesRef.current;
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
   };
 
   const generateResponse = async (userInput) => {
@@ -107,7 +49,11 @@ const handleClothesSearch = () => {
         getMovieRecommendation();
         return "Sure! Here are some movie recommendations:";
       } else if (userInput.toLowerCase().includes("book")) {
-        // ...
+        // Handle book recommendations
+      } else if (userInput.toLowerCase().includes("music")) {
+        // Handle music recommendations
+      } else if (userInput.toLowerCase().includes("clothes")) {
+        // Handle clothes recommendations
       } else {
         return "I'm sorry, I can't help you with that at the moment.";
       }
@@ -123,10 +69,8 @@ const handleClothesSearch = () => {
 
     setIsTyping(true);
 
-    // Simulate API call delay for 1.5 seconds
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // Generate response based on user input
     const response = await generateResponse(userInput);
 
     setIsTyping(false);
@@ -135,12 +79,12 @@ const handleClothesSearch = () => {
     addChatMessage("Chatbot", response);
 
     setUserInput("");
-    scrollToBottom(); // Call the scrollToBottom function
+    scrollToBottom();
   };
 
   const getMovieRecommendation = async () => {
     try {
-      const response = await axios.get(MOVIE_API_URL); // Use the correct API URL here
+      const response = await axios.get(MOVIE_API_URL);
       const movies = response.data.results;
 
       const recommendations = movies.slice(0, 10).map((movie) => {
@@ -170,42 +114,17 @@ const handleClothesSearch = () => {
     }
   };
 
-  const getBookRecommendation = async () => {
-    try {
-      // Simulate fetching book details (replace with actual API call)
-      const bookTitle = "Book Title";
-      const bookRating = "4.7/5";
-      const bookPrice = "$12.50";
-      const bookReview = "Highly recommended!";
-      return `I recommend the book '${bookTitle}' with a rating of ${bookRating}. It costs ${bookPrice}. Review: ${bookReview}`;
-    } catch (error) {
-      console.error("Error fetching book data:", error);
-      return "Oops! Something went wrong while fetching book data.";
-    }
-  };
-
-  // Function to handle auto-scrolling
-  const scrollToBottom = () => {
-    if (chatMessagesRef.current) {
-      const chatMessagesContainer = chatMessagesRef.current;
-      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }
-  };
-
   return (
     <div className="chatbox-container">
       <div className="chatbox-header">HelpMeOut</div>
       <div className="chatbox">
         <div className="chatbox-messages" ref={chatMessagesRef}>
-
-{/* Render book recommendations */}
-<BookRecommendation recommendations={bookRecommendations} />
-      {/* Render music recommendations */}
-      <MusicRecommendation recommendations={musicRecommendations} />
-      {/* Render clothes recommendations */}
-      <ClothesRecommendation recommendations={clothesRecommendations} />
-
-
+          <div className="suggestions">
+            <button onClick={getMovieRecommendation}>Movie Recommendations</button>
+            {/* <button onClick={() => handleBookSearch()}>Book Recommendations</button> */}
+            {/* <button onClick={() => handleMusicSearch()}>Music Recommendations</button> */}
+            {/* <button onClick={() => handleClothesSearch()}>Clothes Recommendations</button> */}
+          </div>
 
           {chatMessages.map((message, index) => (
             <div
@@ -226,14 +145,13 @@ const handleClothesSearch = () => {
             className="text-box"
             type="text"
             value={userInput}
-            onChange={handleInputChange}
+            onChange={(e) => setUserInput(e.target.value)}
             placeholder="Type your message..."
           />
           <button type="submit" className="send-button">
             Send
           </button>
         </form>
-        {/* <ApiTestPage /> */}
       </div>
     </div>
   );
